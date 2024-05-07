@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="dbproj.SongsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:dbproj"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="#EEF7FF">
+    <Grid>
+        <local:NavBar/>
+
+        <Grid Margin="0,55,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="8*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Background="#EEF7FF" Grid.Column="0" Margin="10">
+                <TextBox x:Name="searchTextBox" Margin="0,0,0,5" VerticalAlignment="Center"/>
+                <Button Content="Search" Click="SearchButton_Click"/>
+                <ComboBox x:Name="authorComboBox" Margin="0,10,0,0" DisplayMemberPath="." SelectedValuePath="."/>
+                <ComboBox x:Name="genreComboBox" Margin="0,10,0,0" DisplayMemberPath="." SelectedValuePath="."/>
+            </StackPanel>
+
+            <!-- Songs List with ScrollViewer -->
+            <ScrollViewer Grid.Column="1" Margin="10" Background="#EEF7FF" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Songs}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1" Margin="0 0 0 10" Width="500" CornerRadius="10" Background="#99cfcf">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="{Binding Picture}" Width="100" Height="100"/>
+
+                                    <StackPanel Grid.Column="1" Margin="10">
+                                        <TextBlock Text="{Binding Name}" FontSize="18"/>
+                                        <TextBlock Text="{Binding AuthorName}" Foreground="Gray"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Duration}" Margin="0 0 210 0"/>
+                                            <TextBlock Text="{Binding Listened_Num, StringFormat=Listens: {0}}" FontSize="14"/>
+                                        </StackPanel>
+
+                                        <TextBlock Text="{Binding Genres, StringFormat= Genres: {0}}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

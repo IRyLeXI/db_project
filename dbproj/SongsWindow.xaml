@@ -1,0 +1,62 @@
+﻿<Window x:Class="dbproj.SongsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dbproj"
+        mc:Ignorable="d"
+        Title="Songs" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Panel -->
+        <StackPanel Grid.Column="0" Margin="10">
+            <!-- Search Input -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBox x:Name="txtSearch" Width="150" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                <Button Content="Search" Width="75"/>
+            </StackPanel>
+
+            <!-- Genre Dropdown -->
+            <ComboBox x:Name="cmbGenre" Width="150" Margin="0,0,0,10">
+                <ComboBoxItem Content="Select Genre" IsEnabled="False"/>
+                <ComboBoxItem Content="Pop"/>
+                <ComboBoxItem Content="Rock"/>
+                <ComboBoxItem Content="Hip Hop"/>
+                
+            </ComboBox>
+
+            <!-- Author Dropdown -->
+            <ComboBox x:Name="cmbAuthor" Width="150">
+                <ComboBoxItem Content="Select Author" IsEnabled="False"/>
+                <ComboBoxItem Content="Artist 1"/>
+                <ComboBoxItem Content="Artist 2"/>
+                <ComboBoxItem Content="Artist 3"/>
+                
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Main Content (Song List or Details) -->
+        <Border Grid.Column="1" Margin="10" BorderBrush="LightGray" BorderThickness="1">
+           
+        </Border>
+    </Grid>
+
+    <Window.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Style.Triggers>
+                <Trigger Property="Text" Value="">
+                    <Setter Property="Foreground" Value="Gray"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+</Window>
